@@ -4,6 +4,7 @@ using TMPro;
 public class KillCounter : MonoBehaviour
 {
     [SerializeField] private TMP_Text _killCountText;
+    [SerializeField] private EnemySpawner _enemySpawner;
 
     private int _killCount;
 
@@ -14,14 +15,12 @@ public class KillCounter : MonoBehaviour
 
     private void OnEnable()
     {
-        Enemy.AnyEnemyDied += OnAnyEnemyDied;
-        SceneReloader.SceneRestart += ResetCounter;
+        _enemySpawner.EnemyDied += OnAnyEnemyDied;
     }
 
     private void OnDisable()
     {
-        Enemy.AnyEnemyDied -= OnAnyEnemyDied;
-        SceneReloader.SceneRestart -= ResetCounter;
+        _enemySpawner.EnemyDied -= OnAnyEnemyDied;
     }
 
     private void OnAnyEnemyDied(Enemy enemy)

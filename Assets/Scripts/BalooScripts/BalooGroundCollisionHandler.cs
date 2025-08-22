@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Baloo), typeof(SceneReloader))]
+[RequireComponent(typeof(Baloo))]
 public class BalooGroundCollisionHandler : MonoBehaviour
 {
     private Baloo _baloo;

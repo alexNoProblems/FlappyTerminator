@@ -18,7 +18,6 @@ public class Enemy : MonoBehaviour
 
     public float SpawnY { get; private set; }
 
-    public static event Action<Enemy> AnyEnemyDied;
     public event Action Died;
 
     private void Awake()
@@ -95,7 +94,6 @@ public class Enemy : MonoBehaviour
         _shooter?.StopShooting();
 
         Died?.Invoke();
-        AnyEnemyDied?.Invoke(this);
         gameObject.SetActive(false);
     }
 

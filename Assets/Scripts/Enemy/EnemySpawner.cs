@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,6 +19,8 @@ public class EnemySpawner : MonoBehaviour
     private Coroutine _spawnRoutine;
     private int _currentEnemies = 0;
     private bool _isSpawning = false;
+
+    public event Action<Enemy> EnemyDied;
 
     private HashSet<float> _activeHeights = new();
 
@@ -104,9 +107,17 @@ public class EnemySpawner : MonoBehaviour
         Enemy enemy = Instantiate(_enemyPrefab);
         enemy.Init(_camera, _insideOffset);
         enemy.SubscribeToBaloo(_baloo);
+        enemy.SetSpawnY(randomY);
         enemy.EnterFromAndStickRight(startPosition, randomY, _enterDuration);
 
-        enemy.Died += () => OnEnemyDied(enemy);
+        Action onDied = null;
+        onDied = () =>
+        {
+            enemy.Died -= onDied;
+            OnEnemyDied(enemy);
+        };
+
+        enemy.Died += onDied;
 
         _currentEnemies++;
         _activeHeights.Add(randomY);
@@ -116,6 +127,8 @@ public class EnemySpawner : MonoBehaviour
     {
         _currentEnemies = Mathf.Max(0, _currentEnemies - 1);
         _activeHeights.Remove(enemy.SpawnY);
+
+        EnemyDied?.Invoke(enemy);
     }
 
     private float GetRandomSpawnHeight(Vector3 cameraPosition, float halfHeight)
@@ -126,6 +139,6 @@ public class EnemySpawner : MonoBehaviour
         if (yMin > yMax)
             return cameraPosition.y;
 
-        return Random.Range(yMin, yMax);
+        return UnityEngine.Random.Range(yMin, yMax);
     }
 }
