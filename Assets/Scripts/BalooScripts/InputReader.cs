@@ -21,6 +21,18 @@ public class InputReader : MonoBehaviour
             ShootRequested = true;
     }
 
+    public void RequestTap()
+    {
+        if (Enabled)
+            TapRequested = true;
+    }
+
+    public void RequestShoot()
+    {
+        if (Enabled)
+            ShootRequested = true;
+    }
+
     public void CleanTapRequested()
     {
         TapRequested = false;
