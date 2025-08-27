@@ -1240,6 +1240,7 @@ GameObject:
   - component: {fileID: 590886825}
   - component: {fileID: 590886824}
   - component: {fileID: 590886823}
+  - component: {fileID: 590886828}
   - component: {fileID: 590886827}
   m_Layer: 5
   m_Name: Canvas
@@ -1355,6 +1356,21 @@ MonoBehaviour:
   _baloo: {fileID: 1048536760}
   _music: {fileID: 1556900923}
   _enemySpawner: {fileID: 126902431}
+--- !u!114 &590886828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 590886822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 385be3c6bba2240a9b84c9018283e620, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _upButton: {fileID: 2106289592}
+  _fireButton: {fileID: 44468957}
+  _inputReader: {fileID: 1886111623}
 --- !u!1 &597584132
 GameObject:
   m_ObjectHideFlags: 0
@@ -2506,6 +2522,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f5edc2213fa8c4a468549a1f165e3438, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1886111623 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 877574540091887167, guid: 6590f831115914562822b18df0909182, type: 3}
+  m_PrefabInstance: {fileID: 7085937222742322901}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1886111604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d52179b668904eb78ecdbfb7d32c3f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1909629720

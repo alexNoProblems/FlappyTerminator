@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class InputReader : MonoBehaviour
 {
@@ -14,10 +15,12 @@ public class InputReader : MonoBehaviour
         if (!Enabled)
             return;
 
-        if (Input.GetKeyDown(TapKey))
+        bool isOverUI = IsPointerOverUI();
+
+        if (!isOverUI && Input.GetKeyDown(TapKey))
             TapRequested = true;
 
-        if (Input.GetKeyDown(FireKey))
+        if (!isOverUI && Input.GetKeyDown(FireKey))
             ShootRequested = true;
     }
 
@@ -37,9 +40,20 @@ public class InputReader : MonoBehaviour
     {
         TapRequested = false;
     }
-    
+
     public void CleanShootRequested()
     {
         ShootRequested = false;
+    }
+
+    private bool IsPointerOverUI()
+    {
+        if (EventSystem.current == null)
+            return false;
+
+        if (Input.touchCount > 0)
+            return EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId);
+
+        return EventSystem.current.IsPointerOverGameObject();
     }
 }
